@@ -1,12 +1,14 @@
 const util = require('util')
 const mysql = require('mysql')
 const DBconfig = require('./config.js').db;
+require('dotenv').config()
+
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host     : DBconfig.host,
-  user     : DBconfig.user,
-  password : DBconfig.password,
-  database : DBconfig.database
+  host     : process.env.DBHOST || DBconfig.host,
+  user     : process.env.DBUSER || DBconfig.user, 
+  password : process.env.DBPW || DBconfig.password,
+  database : process.env.DB || DBconfig.database
 })
 
 // Ping database to check for common exception errors.

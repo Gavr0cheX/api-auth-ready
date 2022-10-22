@@ -1,4 +1,8 @@
-const express = require('express')
-const router = express.Router()
-const dbPool = require('../../admin/database')
-const bcrypt = require('bcrypt')
+const express = require('express');
+const router = express.Router();
+const createUserController = require('../../controllers/registerController');
+
+
+router.post('/', createUserController.handleNewUser);
+
+module.exports = router
